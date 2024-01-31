@@ -9,17 +9,27 @@ public class DayBlockManager : MonoBehaviour
     public GameObject chooseGoalMenu;
 
     public Button[] goal;
-  
+
+    [Header("Events")]
+
+    public GameEvent chooseOptionsMenuIsOpen;
+    public GameEvent chooseOptionsMenuIsClosed;
     public void ChooseGoalMenuSetActive()
     {
         if (chooseGoalMenu.active)
         {
-            chooseGoalMenu.SetActive(false);
-        } else chooseGoalMenu.SetActive(true);
+            ChooseGoalMenuSetInactive();
+        }
+        else
+        {
+            chooseGoalMenu.SetActive(true);
+            chooseOptionsMenuIsOpen.Raise();
+        }
     }
     public void ChooseGoalMenuSetInactive()
     {
         chooseGoalMenu.SetActive(false);
+        chooseOptionsMenuIsClosed.Raise();
     }
 
     public void SetGoal(string goalName)

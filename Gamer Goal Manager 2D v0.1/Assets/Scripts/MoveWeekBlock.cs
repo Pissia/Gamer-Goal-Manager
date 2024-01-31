@@ -10,11 +10,17 @@ public class MoveWeekBlock : MonoBehaviour
     private bool coroutineStarted = false;
     private float leftLimit = 7;
     private float rightLimit = -47;
+    private float leftEndPos = 8;
+    private float rightEndPos = -48;
 
     public void MoveWeekBlockRight()
     {
-       // weekBlock.transform.Translate(Vector3.right * addToX);
-       if (coroutineStarted == false && weekBlock.transform.position.x > rightLimit)
+        // weekBlock.transform.Translate(Vector3.right * addToX);
+        if (coroutineStarted == false && weekBlock.transform.position.x < rightLimit)
+        {
+            StartCoroutine(LerpPosRight(weekBlock.transform.position, Vector3.right * leftEndPos));
+        }   
+       else if (coroutineStarted == false && weekBlock.transform.position.x > rightLimit)
         {
             StartCoroutine(LerpPosRight(weekBlock.transform.position, weekBlock.transform.position - (Vector3.right * addToX)));
         }
@@ -23,7 +29,11 @@ public class MoveWeekBlock : MonoBehaviour
 
     public void MoveWeekBlockLeft()
     {
-        if (coroutineStarted == false && weekBlock.transform.position.x < leftLimit)
+        if (coroutineStarted == false && weekBlock.transform.position.x > leftLimit)
+        {
+            StartCoroutine(LerpPosRight(weekBlock.transform.position, Vector3.right * rightEndPos));
+        }
+        else if(coroutineStarted == false && weekBlock.transform.position.x < leftLimit)
         {
             StartCoroutine(LerpPosLeft(weekBlock.transform.position, weekBlock.transform.position + (Vector3.right * addToX)));
         }
