@@ -371,6 +371,7 @@
 "Assets/Scripts/DayBlockManager.cs"
 "Assets/Scripts/Events/GameEvent.cs"
 "Assets/Scripts/GameEventListener.cs"
+"Assets/Scripts/GoalsScript.cs"
 "Assets/Scripts/MoveWeekBlock.cs"
 "Assets/Scripts/SetGoal.cs"
 "Assets/Scripts/UIManager.cs"

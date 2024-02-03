@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +9,8 @@ public class DayBlockManager : MonoBehaviour
 {
     public GameObject chooseGoalMenu;
 
-    public Button[] goal;
+    public Button[] goals;
+    private List<GameObject> activeGoals = new List<GameObject>();
 
     [Header("Events")]
 
@@ -16,7 +18,7 @@ public class DayBlockManager : MonoBehaviour
     public GameEvent chooseOptionsMenuIsClosed;
     public void ChooseGoalMenuSetActive()
     {
-        if (chooseGoalMenu.active)
+        if (chooseGoalMenu.activeSelf)
         {
             ChooseGoalMenuSetInactive();
         }
@@ -34,16 +36,37 @@ public class DayBlockManager : MonoBehaviour
 
     public void SetGoal(string goalName)
     {
-        for(int i = 0; i < goal.Length; i++)
+        for(int i = 0; i < goals.Length; i++)
         {
-            if (goal[i].isActiveAndEnabled == false)
+            if (goals[i].isActiveAndEnabled == false)
             {
-                goal[i].gameObject.SetActive(true);
-                goal[i].GetComponentInChildren<TextMeshProUGUI>().text = goalName;
+                goals[i].gameObject.SetActive(true);
+                goals[i].GetComponentInChildren<TextMeshProUGUI>().text = goalName;
+                activeGoals.Add(goals[i].gameObject);
 
                 break;
             }
         }
     }
+
+    public void ResetGoals()
+    {
+        
+        Debug.Log("active goals in list" + activeGoals.Count);
+        
+        if (activeGoals.Any())
+        {
+            foreach (GameObject goal in activeGoals)
+            {
+                goal.GetComponent<GoalsScript>().ResetGoal();
+                goal.SetActive(false);
+            }            
+        }
+        activeGoals.Clear();
+        Debug.Log("active goals in list" + activeGoals.Count);
+    }
+
+
+
 
 }
