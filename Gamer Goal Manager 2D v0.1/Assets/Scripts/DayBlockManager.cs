@@ -16,6 +16,9 @@ public class DayBlockManager : MonoBehaviour
 
     public GameEvent chooseOptionsMenuIsOpen;
     public GameEvent chooseOptionsMenuIsClosed;
+
+    public GameObject addGoalButton;
+    public GameObject resetGoalsButton;
     public void ChooseGoalMenuSetActive()
     {
         if (chooseGoalMenu.activeSelf)
@@ -49,11 +52,8 @@ public class DayBlockManager : MonoBehaviour
         }
     }
 
-    public void ResetGoals()
-    {
-        
-        Debug.Log("active goals in list" + activeGoals.Count);
-        
+    public void ClearGoals()
+    {       
         if (activeGoals.Any())
         {
             foreach (GameObject goal in activeGoals)
@@ -63,10 +63,75 @@ public class DayBlockManager : MonoBehaviour
             }            
         }
         activeGoals.Clear();
-        Debug.Log("active goals in list" + activeGoals.Count);
     }
 
+    public void ResetGoals()
+    {
+        if (activeGoals.Any())
+        {
+            foreach (GameObject goal in activeGoals)
+            {
+                goal.GetComponent<GoalsScript>().ResetGoal();
+            }
+        }
+    }
 
+    public void EnterPlanningMode()
+    {
+        addGoalButton.SetActive(true);
+        resetGoalsButton.SetActive(true);
+        if(activeGoals != null)
+        {
+            ResetGoals();
+        }
+        
+    }
+    public void HideButtons()
+    {
+        addGoalButton.SetActive(false);
+        resetGoalsButton.SetActive(false);
+    }
 
+    private void Start()
+    {
+        HideButtons();
+    }
+
+    public void RearrangeGoals()
+    {
+        
+        
+        for(int i = 0; i < goals.Length; i++)
+        {
+            if(i == goals.Length && !goals[i].IsActive())
+            {
+                goals[i].gameObject.SetActive(false);
+                activeGoals.Remove(goals[i].gameObject);
+                break;
+            }
+            if(i < goals.Length-1 && !goals[i].IsActive() && !goals[i + 1].IsActive())
+            {
+                break;
+            }
+            if (!goals[i].IsActive() && i != goals.Length-1 && goals[i+1] !=null)
+            {
+                goals[i].GetComponentInChildren<TextMeshProUGUI>().text = goals[i + 1].GetComponentInChildren<TextMeshProUGUI>().text;
+                goals[i].gameObject.SetActive(true);
+                goals[i + 1].gameObject.SetActive(false);
+                activeGoals.Remove(goals[i + 1].gameObject);
+
+                if(i < goals.Length - 2)
+                {
+                    if (goals[i + 2] != null && !goals[i + 2].IsActive())
+                    {
+                        break;
+                    }
+                }
+               
+               // Debug.Log(goals.Length);
+            }
+         
+        }
+    }
 
 }

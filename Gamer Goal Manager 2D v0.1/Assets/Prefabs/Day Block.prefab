@@ -433,6 +433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
+  dayBlockManager: {fileID: 1981091857}
 --- !u!1 &390429268
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,6 +1137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
+  dayBlockManager: {fileID: 1981091857}
 --- !u!1 &1021529376
 GameObject:
   m_ObjectHideFlags: 0
@@ -1420,6 +1422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
+  dayBlockManager: {fileID: 1981091857}
 --- !u!1 &1110540579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1749,7 +1752,7 @@ Transform:
   - {fileID: 1851014581}
   - {fileID: 1510044580}
   m_Father: {fileID: 8499939245743902507}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1437762002
 GameObject:
@@ -1900,6 +1903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
+  dayBlockManager: {fileID: 1981091857}
 --- !u!1 &1510044579
 GameObject:
   m_ObjectHideFlags: 0
@@ -2508,6 +2512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
+  dayBlockManager: {fileID: 1981091857}
 --- !u!1 &2124645174
 GameObject:
   m_ObjectHideFlags: 0
@@ -8187,7 +8192,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1981091857}
         m_TargetAssemblyTypeName: DayBlockManager, Assembly-CSharp
-        m_MethodName: ResetGoals
+        m_MethodName: ClearGoals
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10143,12 +10148,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6046622429734672439}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.0204, y: 0.0005, z: 0}
   m_LocalScale: {x: 4, y: 7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8499939245743902507}
-  m_RootOrder: 1
+  m_Father: {fileID: 5342922902680219818}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6359575055666867150
 SpriteRenderer:
@@ -11430,6 +11435,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8499939245743902507}
   - component: {fileID: 1981091857}
+  - component: {fileID: 5365359504589078094}
+  - component: {fileID: 8084482858713756391}
   m_Layer: 0
   m_Name: Day Block
   m_TagString: Untagged
@@ -11450,7 +11457,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5342922902680219818}
-  - {fileID: 2150536370224423}
   - {fileID: 1215883028}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -11476,6 +11482,64 @@ MonoBehaviour:
   - {fileID: 827906196}
   chooseOptionsMenuIsOpen: {fileID: 11400000, guid: dd90e309ceda93a4da9562c3fef3123f, type: 2}
   chooseOptionsMenuIsClosed: {fileID: 11400000, guid: ec11aac2aa7019640b9508375670c100, type: 2}
+  addGoalButton: {fileID: 7183431102819971507}
+  resetGoalsButton: {fileID: 4006325273924883891}
+--- !u!114 &5365359504589078094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6675616306597727355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77835658d57ceb41b6539c2d4870a09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 44ccafd5b28452e4489b386d01140cea, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1981091857}
+        m_TargetAssemblyTypeName: DayBlockManager, Assembly-CSharp
+        m_MethodName: EnterPlanningMode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8084482858713756391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6675616306597727355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77835658d57ceb41b6539c2d4870a09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 00a3a4adb42a86c499a4341a3a20815a, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1981091857}
+        m_TargetAssemblyTypeName: DayBlockManager, Assembly-CSharp
+        m_MethodName: HideButtons
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6679929997316721645
 GameObject:
   m_ObjectHideFlags: 0
@@ -12101,6 +12165,7 @@ RectTransform:
   - {fileID: 2031189030}
   - {fileID: 1437762003}
   - {fileID: 827906195}
+  - {fileID: 2150536370224423}
   m_Father: {fileID: 8499939245743902507}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

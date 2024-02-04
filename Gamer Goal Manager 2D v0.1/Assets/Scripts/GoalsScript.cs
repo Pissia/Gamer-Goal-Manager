@@ -7,6 +7,7 @@ public class GoalsScript : MonoBehaviour
 {
     private Image goalDoneImage;
     public bool isActive;
+    public DayBlockManager dayBlockManager;
 
     private void Start()
     {
@@ -16,9 +17,18 @@ public class GoalsScript : MonoBehaviour
 
     public void GoalIsDone()
     {
-        gameObject.GetComponent<Button>().interactable = false;
-        goalDoneImage.gameObject.SetActive(true);
-        isActive = false;
+        if (!GameManager.instance.planingModeIsOn)
+        {
+            gameObject.GetComponent<Button>().interactable = false;
+            goalDoneImage.gameObject.SetActive(true);
+            isActive = false;
+        }else
+        {
+           ResetGoal();
+            gameObject.SetActive(false); 
+           dayBlockManager.RearrangeGoals();
+        }
+        
     }
 
     public void ResetGoal()

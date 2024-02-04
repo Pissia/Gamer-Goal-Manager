@@ -6,19 +6,10 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public Button[] navigationButtons;
+    public GameObject planningModeUI;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    public GameEvent planningModeIsOn;
+    public GameEvent planningModeOff;
     public void HideButtons()
     {
         for(int i = 0; i < navigationButtons.Length; i++)
@@ -34,4 +25,16 @@ public class UIManager : MonoBehaviour
             navigationButtons[i].gameObject.SetActive(true);
         }
     }
+
+    public void ShowPlannningModeUI()
+    {
+        planningModeIsOn.Raise();
+        planningModeUI.SetActive(true);
+    }
+    public void HidePlanningModeUI()
+    {  
+        planningModeOff.Raise();
+        planningModeUI.SetActive(false);
+    }
+
 }
