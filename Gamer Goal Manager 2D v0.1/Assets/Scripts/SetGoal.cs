@@ -11,10 +11,11 @@ public class SetGoal : MonoBehaviour
 
     public TextMeshProUGUI optionText;
 
+    [SerializeField] private float expValue;
     public void SetGoalToThisOption()
     {
         
-        dayBlockManager.GetComponent<DayBlockManager>().SetGoal(optionText.text);
+        dayBlockManager.GetComponent<DayBlockManager>().SetGoal(optionText.text, expValue);
     }
 
     // Start is called before the first frame update

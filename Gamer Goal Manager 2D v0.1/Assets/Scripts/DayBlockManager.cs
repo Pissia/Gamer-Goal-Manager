@@ -37,7 +37,7 @@ public class DayBlockManager : MonoBehaviour
         chooseOptionsMenuIsClosed.Raise();
     }
 
-    public void SetGoal(string goalName)
+    public void SetGoal(string goalName, float goalExpValue)
     {
         for(int i = 0; i < goals.Length; i++)
         {
@@ -45,6 +45,7 @@ public class DayBlockManager : MonoBehaviour
             {
                 goals[i].gameObject.SetActive(true);
                 goals[i].GetComponentInChildren<TextMeshProUGUI>().text = goalName;
+                goals[i].GetComponent<GoalsScript>().expAmount = goalExpValue;
                 activeGoals.Add(goals[i].gameObject);
 
                 break;
@@ -97,6 +98,7 @@ public class DayBlockManager : MonoBehaviour
         HideButtons();
     }
 
+    //Rearranging goals in planning mode
     public void RearrangeGoals()
     {
         

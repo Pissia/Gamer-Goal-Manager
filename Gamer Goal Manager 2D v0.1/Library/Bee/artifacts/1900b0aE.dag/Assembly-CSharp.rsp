@@ -373,6 +373,7 @@
 "Assets/Scripts/GameEventListener.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/GoalsScript.cs"
+"Assets/Scripts/MainXPSlider.cs"
 "Assets/Scripts/MoveWeekBlock.cs"
 "Assets/Scripts/Player.cs"
 "Assets/Scripts/PlayerData.cs"

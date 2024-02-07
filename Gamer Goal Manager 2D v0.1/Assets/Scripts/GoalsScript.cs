@@ -9,6 +9,8 @@ public class GoalsScript : MonoBehaviour
     public bool isActive;
     public DayBlockManager dayBlockManager;
 
+    public float expAmount;
+
     private void Start()
     {
         goalDoneImage = transform.Find("Goal Done Image").GetComponent<Image>();
@@ -22,6 +24,8 @@ public class GoalsScript : MonoBehaviour
             gameObject.GetComponent<Button>().interactable = false;
             goalDoneImage.gameObject.SetActive(true);
             isActive = false;
+            //invoke expirience handler
+            GameManager.instance.AddExpirience(expAmount);
         }else
         {
            ResetGoal();

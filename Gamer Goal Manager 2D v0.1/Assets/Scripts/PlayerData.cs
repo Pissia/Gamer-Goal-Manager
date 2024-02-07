@@ -10,6 +10,7 @@ public class PlayerData
     public float currentXP;
 
     public PlayerData (Player player)
+
     {
         playerName = player.playerName;
         level = player.level;

@@ -7,7 +7,13 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public bool planingModeIsOn = false;
     public Player player;
+    public MainXPSlider mainXPSlider;
 
+    public delegate void ExpirienceCangeHandler(float amount);
+    public event ExpirienceCangeHandler OnExpirinecChange;
+
+
+    //Singleton check
     private void Awake()
     {
         if(instance == null)
@@ -19,7 +25,18 @@ public class GameManager : MonoBehaviour
             Destroy(instance);
         }
     }
+   
+ 
+    public void Update()
+    {
+        mainXPSlider.UpdateLevelText(player.level);
+        mainXPSlider.UpdateLevelProgress(player.currentXP, player.maxExpirienceOnLevel);
+    }
 
+    public void AddExpirience(float amount)
+    {
+        OnExpirinecChange?.Invoke(amount);
+    }
     public void TurnOnPlanningMode()
     {
         planingModeIsOn = true;
