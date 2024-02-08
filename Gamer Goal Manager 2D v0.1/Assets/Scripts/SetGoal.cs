@@ -15,7 +15,7 @@ public class SetGoal : MonoBehaviour
     public void SetGoalToThisOption()
     {
         
-        dayBlockManager.GetComponent<DayBlockManager>().SetGoal(optionText.text, expValue);
+        dayBlockManager.GetComponent<DayBlockManager>().SetGoal(optionText.text, expValue, gameObject.GetComponent<Image>().sprite);
     }
 
     // Start is called before the first frame update

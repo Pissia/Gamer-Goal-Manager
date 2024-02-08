@@ -37,7 +37,7 @@ public class DayBlockManager : MonoBehaviour
         chooseOptionsMenuIsClosed.Raise();
     }
 
-    public void SetGoal(string goalName, float goalExpValue)
+    public void SetGoal(string goalName, float goalExpValue, Sprite optionImage)
     {
         for(int i = 0; i < goals.Length; i++)
         {
@@ -46,6 +46,7 @@ public class DayBlockManager : MonoBehaviour
                 goals[i].gameObject.SetActive(true);
                 goals[i].GetComponentInChildren<TextMeshProUGUI>().text = goalName;
                 goals[i].GetComponent<GoalsScript>().expAmount = goalExpValue;
+                goals[i].GetComponent<Image>().sprite = optionImage;
                 activeGoals.Add(goals[i].gameObject);
 
                 break;
@@ -53,6 +54,7 @@ public class DayBlockManager : MonoBehaviour
         }
     }
 
+    //delete all goals from day block
     public void ClearGoals()
     {       
         if (activeGoals.Any())
@@ -66,6 +68,7 @@ public class DayBlockManager : MonoBehaviour
         activeGoals.Clear();
     }
 
+    // reset done goals 
     public void ResetGoals()
     {
         if (activeGoals.Any())
@@ -118,6 +121,7 @@ public class DayBlockManager : MonoBehaviour
             if (!goals[i].IsActive() && i != goals.Length-1 && goals[i+1] !=null)
             {
                 goals[i].GetComponentInChildren<TextMeshProUGUI>().text = goals[i + 1].GetComponentInChildren<TextMeshProUGUI>().text;
+                goals[i].GetComponentInChildren<Image>().sprite = goals[i + 1].GetComponentInChildren<Image>().sprite;
                 goals[i].gameObject.SetActive(true);
                 goals[i + 1].gameObject.SetActive(false);
                 activeGoals.Remove(goals[i + 1].gameObject);
