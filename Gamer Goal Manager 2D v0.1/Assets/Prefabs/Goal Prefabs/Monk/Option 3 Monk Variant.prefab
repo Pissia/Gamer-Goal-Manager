@@ -96,6 +96,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4211751772209142663, guid: 0009ad960d6aba740b585b2a843467f8, type: 3}
+      propertyPath: expValueMain
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211751772209142663, guid: 0009ad960d6aba740b585b2a843467f8, type: 3}
+      propertyPath: expValueMonk
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211751772209142663, guid: 0009ad960d6aba740b585b2a843467f8, type: 3}
       propertyPath: dayBlockManager
       value: 
       objectReference: {fileID: 0}

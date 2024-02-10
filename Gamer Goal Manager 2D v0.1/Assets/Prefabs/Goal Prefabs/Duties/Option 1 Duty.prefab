@@ -150,7 +150,10 @@ MonoBehaviour:
   option: {fileID: 7706924938765663063}
   dayBlockManager: {fileID: 0}
   optionText: {fileID: 8376677987099798399}
-  expValue: 50
+  expValueMain: 50
+  expValueMonk: 0
+  expValueFighter: 0
+  expValueSocial: 0
 --- !u!1 &7194072713161591322
 GameObject:
   m_ObjectHideFlags: 0

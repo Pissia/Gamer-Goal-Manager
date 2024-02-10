@@ -32,7 +32,11 @@ public class UIManager : MonoBehaviour
         planningModeUI.SetActive(true);
     }
     public void HidePlanningModeUI()
-    {  
+    {
+        if (!navigationButtons[0].IsActive())
+        {
+            ShowButtons();
+        }
         planningModeOff.Raise();
         planningModeUI.SetActive(false);
     }

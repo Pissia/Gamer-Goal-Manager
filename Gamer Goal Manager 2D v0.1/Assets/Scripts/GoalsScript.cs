@@ -9,7 +9,10 @@ public class GoalsScript : MonoBehaviour
     public bool isActive;
     public DayBlockManager dayBlockManager;
 
-    public float expAmount;
+    public float mainXP;
+    public float monkXP;
+    public float fighterXP;
+    public float socialXP;
 
     private void Start()
     {
@@ -25,7 +28,7 @@ public class GoalsScript : MonoBehaviour
             goalDoneImage.gameObject.SetActive(true);
             isActive = false;
             //invoke expirience handler
-            GameManager.instance.AddExpirience(expAmount);
+            GameManager.instance.AddExpirience(mainXP, monkXP,fighterXP, socialXP);
         }else
         {
            ResetGoal();

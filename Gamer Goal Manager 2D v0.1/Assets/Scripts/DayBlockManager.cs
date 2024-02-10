@@ -37,7 +37,7 @@ public class DayBlockManager : MonoBehaviour
         chooseOptionsMenuIsClosed.Raise();
     }
 
-    public void SetGoal(string goalName, float goalExpValue, Sprite optionImage)
+    public void SetGoal(string goalName, float mainXP, float monkXP, float fighterXP, float socialXP, Sprite optionImage)
     {
         for(int i = 0; i < goals.Length; i++)
         {
@@ -45,7 +45,10 @@ public class DayBlockManager : MonoBehaviour
             {
                 goals[i].gameObject.SetActive(true);
                 goals[i].GetComponentInChildren<TextMeshProUGUI>().text = goalName;
-                goals[i].GetComponent<GoalsScript>().expAmount = goalExpValue;
+                goals[i].GetComponent<GoalsScript>().mainXP = mainXP;
+                goals[i].GetComponent<GoalsScript>().monkXP = monkXP;
+                goals[i].GetComponent<GoalsScript>().fighterXP = fighterXP;
+                goals[i].GetComponent<GoalsScript>().socialXP = socialXP;
                 goals[i].GetComponent<Image>().sprite = optionImage;
                 activeGoals.Add(goals[i].gameObject);
 
@@ -89,6 +92,12 @@ public class DayBlockManager : MonoBehaviour
             ResetGoals();
         }
         
+    }
+
+    public void ExitPlanningMode()
+    {
+        ChooseGoalMenuSetInactive();
+        HideButtons();
     }
     public void HideButtons()
     {

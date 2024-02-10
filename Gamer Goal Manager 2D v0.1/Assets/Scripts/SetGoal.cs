@@ -11,11 +11,14 @@ public class SetGoal : MonoBehaviour
 
     public TextMeshProUGUI optionText;
 
-    [SerializeField] private float expValue;
+    [SerializeField] private float expValueMain;
+    [SerializeField] private float expValueMonk;
+    [SerializeField] private float expValueFighter;
+    [SerializeField] private float expValueSocial;
     public void SetGoalToThisOption()
     {
         
-        dayBlockManager.GetComponent<DayBlockManager>().SetGoal(optionText.text, expValue, gameObject.GetComponent<Image>().sprite);
+        dayBlockManager.GetComponent<DayBlockManager>().SetGoal(optionText.text, expValueMain, expValueMonk, expValueFighter, expValueSocial, gameObject.GetComponent<Image>().sprite);
     }
 
     // Start is called before the first frame update

@@ -8,8 +8,11 @@ public class GameManager : MonoBehaviour
     public bool planingModeIsOn = false;
     public Player player;
     public MainXPSlider mainXPSlider;
+    public MainXPSlider monkXPSlider;
+    public MainXPSlider fighterXPSlider;
+    public MainXPSlider socialXPSlider;
 
-    public delegate void ExpirienceCangeHandler(float amount);
+    public delegate void ExpirienceCangeHandler(float mainXP, float monkXP, float fighterXP, float socialXP);
     public event ExpirienceCangeHandler OnExpirinecChange;
 
 
@@ -29,13 +32,24 @@ public class GameManager : MonoBehaviour
  
     public void Update()
     {
-        mainXPSlider.UpdateLevelText(player.level);
-        mainXPSlider.UpdateLevelProgress(player.currentXP, player.maxExpirienceOnLevel);
+        UpdateXPSliders();
     }
 
-    public void AddExpirience(float amount)
+    private void UpdateXPSliders()
     {
-        OnExpirinecChange?.Invoke(amount);
+        mainXPSlider.UpdateLevelText(player.level);
+        mainXPSlider.UpdateLevelProgress(player.currentXP, player.maxExpirienceOnLevel);
+        monkXPSlider.UpdateLevelText(player.levelMonk);
+        monkXPSlider.UpdateLevelProgress(player.currentXPMonk, player.maxExpirienceOnLevelMonk);
+        fighterXPSlider.UpdateLevelText(player.levelFighter);
+        fighterXPSlider.UpdateLevelProgress(player.currentXPFighter, player.maxExpirienceOnLevelFighter);
+        socialXPSlider.UpdateLevelText(player.levelSocial);
+        socialXPSlider.UpdateLevelProgress(player.currentXPSocial, player.maxExpirienceOnLevelSocial);
+    }
+
+    public void AddExpirience(float mainXP, float monkXP, float fighterXP, float socialXP)
+    {
+        OnExpirinecChange?.Invoke(mainXP, monkXP, fighterXP, socialXP);
     }
     public void TurnOnPlanningMode()
     {

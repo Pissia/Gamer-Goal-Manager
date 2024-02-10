@@ -5,9 +5,22 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public string playerName;
+
     public int level;
     public float currentXP;
     public float maxExpirienceOnLevel;
+
+    public int levelMonk;
+    public float currentXPMonk;
+    public float maxExpirienceOnLevelMonk;
+
+    public int levelFighter;
+    public float currentXPFighter;
+    public float maxExpirienceOnLevelFighter;
+
+    public int levelSocial;
+    public float currentXPSocial;
+    public float maxExpirienceOnLevelSocial;
 
     private void OnEnable()
     {
@@ -21,12 +34,27 @@ public class Player : MonoBehaviour
         GameManager.instance.OnExpirinecChange -= HandleExpirienceChange;
     }
 
-    private void HandleExpirienceChange(float addedExpirience)
+    private void HandleExpirienceChange(float addXPMain, float addXPMonk, float addXPFighter, float addXPSocial)
     {
-        currentXP += addedExpirience;
+        currentXP += addXPMain;
         if (currentXP >= maxExpirienceOnLevel)
         {
             LevelUp();
+        }
+        currentXPMonk += addXPMonk;
+        if (currentXPMonk >= maxExpirienceOnLevelMonk)
+        {
+            LevelUpMonk();
+        }
+        currentXPFighter += addXPFighter;
+        if (currentXPFighter >= maxExpirienceOnLevelFighter)
+        {
+            LevelUpFighter();
+        }
+        currentXPSocial += addXPSocial;
+        if (currentXPSocial >= maxExpirienceOnLevelSocial)
+        {
+            LevelUpSocial();
         }
     }
 
@@ -35,5 +63,26 @@ public class Player : MonoBehaviour
         level++;
         currentXP = 0;
         maxExpirienceOnLevel += 100;
+    }
+
+    private void LevelUpMonk()
+    {
+        levelMonk++;
+        currentXPMonk = 0;
+        maxExpirienceOnLevelMonk += 100;
+    }
+
+    private void LevelUpFighter()
+    {
+        levelFighter++;
+        currentXPFighter = 0;
+        maxExpirienceOnLevelFighter += 100;
+    }
+
+    private void LevelUpSocial()
+    {
+        levelSocial++;
+        currentXPSocial = 0;
+        maxExpirienceOnLevelSocial += 100;
     }
 }

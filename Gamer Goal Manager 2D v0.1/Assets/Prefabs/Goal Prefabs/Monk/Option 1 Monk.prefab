@@ -285,4 +285,7 @@ MonoBehaviour:
   option: {fileID: 2895679655778350937}
   dayBlockManager: {fileID: 0}
   optionText: {fileID: 869015031825100520}
-  expValue: 75
+  expValueMain: 0
+  expValueMonk: 50
+  expValueFighter: 0
+  expValueSocial: 0
