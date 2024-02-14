@@ -22,6 +22,10 @@ public class Player : MonoBehaviour
     public float currentXPSocial;
     public float maxExpirienceOnLevelSocial;
 
+    public string dayName;
+    public int dayNumber;
+    public int monthNumber;
+
     private void OnEnable()
     {
         //Subscribe on event

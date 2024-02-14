@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +13,14 @@ public class GameManager : MonoBehaviour
     public MainXPSlider monkXPSlider;
     public MainXPSlider fighterXPSlider;
     public MainXPSlider socialXPSlider;
+
+    public TextMeshProUGUI dayNameAndDate;
+    private string dayName;
+    private int dayNumber;
+    private int monthNumber;
+
+
+
 
     public delegate void ExpirienceCangeHandler(float mainXP, float monkXP, float fighterXP, float socialXP);
     public event ExpirienceCangeHandler OnExpirinecChange;
@@ -28,8 +38,17 @@ public class GameManager : MonoBehaviour
             Destroy(instance);
         }
     }
-   
- 
+
+    public void Start()
+    {
+        GetCurrentDate();
+        if (dayNameAndDate != null)
+        {
+            PrintCurrentDate();
+        }
+        
+    }
+
     public void Update()
     {
         UpdateXPSliders();
@@ -72,5 +91,17 @@ public class GameManager : MonoBehaviour
         player.playerName = data.playerName;
         player.level = data.level;
         player.currentXP = data.currentXP;
+    }
+
+    private void GetCurrentDate()
+    {
+        dayName = DateTime.Now.DayOfWeek.ToString();
+        dayNumber = DateTime.Now.Day;
+        monthNumber = DateTime.Now.Month;
+    }
+
+    private void PrintCurrentDate()
+    {
+        dayNameAndDate.text = dayName + " " + dayNumber + "/" + monthNumber;
     }
 }
