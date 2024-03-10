@@ -13,13 +13,15 @@ public class GameManager : MonoBehaviour
     public MainXPSlider monkXPSlider;
     public MainXPSlider fighterXPSlider;
     public MainXPSlider socialXPSlider;
+    public DayBlockManager[] dayBlockManagers;
+    public String[] weekDayNames;
+    public MoveWeekBlock moveWeekBlock;
 
     public TextMeshProUGUI dayNameAndDate;
     private string dayName;
     private int dayNumber;
     private int monthNumber;
-
-
+    [SerializeField]public int weekDayNumber;
 
 
     public delegate void ExpirienceCangeHandler(float mainXP, float monkXP, float fighterXP, float socialXP);
@@ -46,6 +48,9 @@ public class GameManager : MonoBehaviour
         {
             PrintCurrentDate();
         }
+        CompareDayName();
+        SetDayBlockActive();
+        moveWeekBlock.MoveToCurrentDay();
         
     }
 
@@ -103,5 +108,28 @@ public class GameManager : MonoBehaviour
     private void PrintCurrentDate()
     {
         dayNameAndDate.text = dayName + " " + dayNumber + "/" + monthNumber;
+    }
+
+    private void CompareDayName()
+
+    {
+        for(int i = 0; i < weekDayNames.Length; i++)
+        {
+            if (String.Equals(weekDayNames[i], dayName))
+            {
+                weekDayNumber = i;
+            }
+        }
+    }
+
+    private void SetDayBlockActive()
+    {
+        for(int i = 0; i < dayBlockManagers.Length; i++)
+        {
+            if(i == weekDayNumber)
+            {
+                dayBlockManagers[i].DayBlockIsActive();
+            }
+        }
     }
 }

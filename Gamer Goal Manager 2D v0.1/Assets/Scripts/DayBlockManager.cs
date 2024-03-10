@@ -19,6 +19,9 @@ public class DayBlockManager : MonoBehaviour
 
     public GameObject addGoalButton;
     public GameObject resetGoalsButton;
+
+    public GameObject dayBlockIsInactiveSprite;
+    public int dayBlockNumber;
     public void ChooseGoalMenuSetActive()
     {
         if (chooseGoalMenu.activeSelf)
@@ -91,6 +94,7 @@ public class DayBlockManager : MonoBehaviour
         {
             ResetGoals();
         }
+        DayBlockIsActive();
         
     }
 
@@ -98,6 +102,10 @@ public class DayBlockManager : MonoBehaviour
     {
         ChooseGoalMenuSetInactive();
         HideButtons();
+        if(dayBlockNumber != GameManager.instance.weekDayNumber)
+        {
+            DayBlockIsInactive();
+        }
     }
     public void HideButtons()
     {
@@ -149,4 +157,28 @@ public class DayBlockManager : MonoBehaviour
         }
     }
 
+    public void DayBlockIsActive()
+    {
+        dayBlockIsInactiveSprite.SetActive(false);
+        if (activeGoals.Any())
+        {
+            foreach (var goal in activeGoals)
+            {
+                goal.GetComponent<Button>().interactable = true;
+            }
+        }
+
+    }
+
+    public void DayBlockIsInactive()
+    {
+        dayBlockIsInactiveSprite.SetActive(true);
+        if (activeGoals.Any())
+        {
+            foreach (var goal in activeGoals)
+            {
+                goal.GetComponent<Button>().interactable = false;
+            }
+        }
+    }
 }

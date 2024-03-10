@@ -13,6 +13,20 @@ public class MoveWeekBlock : MonoBehaviour
     private float leftEndPos = 8;
     private float rightEndPos = -48;
 
+    public float[] weekDayPos;
+
+    
+
+    public void MoveToCurrentDay()
+    {
+        for(int i = 0; i < weekDayPos.Length; i++)
+        {
+            if(i == GameManager.instance.weekDayNumber)
+            {
+                StartCoroutine(LerpPosRight(weekBlock.transform.position, weekBlock.transform.position - (Vector3.right * weekDayPos[i])));
+            }
+        }
+    }
     public void MoveWeekBlockRight()
     {
         // weekBlock.transform.Translate(Vector3.right * addToX);
