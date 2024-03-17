@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using TMPro;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,13 +18,14 @@ public class GameManager : MonoBehaviour
     public DayBlockManager[] dayBlockManagers;
     public String[] weekDayNames;
     public MoveWeekBlock moveWeekBlock;
-
     public TextMeshProUGUI dayNameAndDate;
+    public GameObject playerIcon;
+    
     private string dayName;
     private int dayNumber;
     private int monthNumber;
     [SerializeField]public int weekDayNumber;
-
+    
 
     public delegate void ExpirienceCangeHandler(float mainXP, float monkXP, float fighterXP, float socialXP);
     public event ExpirienceCangeHandler OnExpirinecChange;
@@ -34,11 +37,13 @@ public class GameManager : MonoBehaviour
         if(instance == null)
         {
             instance = this;
+            
         }
         else
         {
             Destroy(instance);
         }
+
     }
 
     public void Start()
@@ -57,6 +62,16 @@ public class GameManager : MonoBehaviour
     public void Update()
     {
         UpdateXPSliders();
+    }
+
+    public void OpenIconSelectionMenu()
+    {
+        Debug.Log("Icon menu is open");
+    }
+
+    public void SetPlayerIconTo(Sprite thisSprite)
+    {
+        playerIcon.GetComponent<Image>().sprite = thisSprite; 
     }
 
     private void UpdateXPSliders()

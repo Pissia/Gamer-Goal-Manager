@@ -10,6 +10,10 @@ public class UIManager : MonoBehaviour
 
     public GameEvent planningModeIsOn;
     public GameEvent planningModeOff;
+
+    private bool iconMenuIsOpen;
+    public GameObject iconSelectionMenu;
+
     public void HideButtons()
     {
         for(int i = 0; i < navigationButtons.Length; i++)
@@ -41,4 +45,19 @@ public class UIManager : MonoBehaviour
         planningModeUI.SetActive(false);
     }
 
+    public void ShowOrHideIconSelectionMenu()
+    {
+        if (iconMenuIsOpen)
+        {
+            iconMenuIsOpen = false;
+            iconSelectionMenu.SetActive(false);
+        }
+        else
+        {
+            iconMenuIsOpen = true;
+            iconSelectionMenu.SetActive(true);
+        }
+    }
+
+    
 }
