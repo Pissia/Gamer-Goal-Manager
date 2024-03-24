@@ -29,6 +29,8 @@ public class GoalsScript : MonoBehaviour
             isActive = false;
             //invoke expirience handler
             GameManager.instance.AddExpirience(mainXP, monkXP,fighterXP, socialXP);
+            //Add effects
+            AudioManager.instance.PlaySFX("Hitmarker");
         }else
         {
            ResetGoal();
